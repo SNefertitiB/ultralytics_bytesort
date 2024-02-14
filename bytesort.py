@@ -6,8 +6,7 @@ import cv2
 from ultralytics import YOLO
 
 # Load the YOLOv8 model
-model = YOLO('yolov8n.pt')
-# model = YOLO('best.pt')  # note, not compatible with yolov5 model
+model = YOLO('best_yolov8_base.pt') # note, not compatible with yolov5 model
 
 # Open the video file
 video_path = "vid.mp4"
@@ -20,7 +19,7 @@ while cap.isOpened():
 
     if success:
         # Run YOLOv8 tracking on the frame, persisting tracks between frames
-        results = model.track(frame, persist=True, tracker="bytetrack.yaml", verbose=False)
+        results = model.track(frame, persist=True, tracker="bytetrack.yaml")
 
         # Visualize the results on the frame
         annotated_frame = results[0].plot()
